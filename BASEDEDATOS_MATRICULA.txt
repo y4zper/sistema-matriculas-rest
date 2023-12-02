@@ -1,0 +1,138 @@
+CREATE TABLE usuario (
+	idusuario INT AUTO_INCREMENT NOT NULL,
+	nomusuario VARCHAR(100) NULL,
+	email VARCHAR(200) NULL,
+	clave VARCHAR(300) NULL,
+	nombres VARCHAR(100) NULL,
+	apellidos VARCHAR(100) NULL,
+	activo BOOL NULL,
+	CONSTRAINT users_pk PRIMARY KEY (idusuario)
+);
+
+
+CREATE TABLE rol (
+	idrol INT AUTO_INCREMENT NOT NULL,
+	nomrol VARCHAR(300) NULL,
+	CONSTRAINT roles_pk PRIMARY KEY (idrol)
+);
+
+
+CREATE TABLE usuario_rol (
+	idusuario INT NOT NULL,
+	idrol INT NOT NULL,
+	CONSTRAINT user_role_pk PRIMARY KEY (idusuario, idrol),
+	CONSTRAINT user_role_FK FOREIGN KEY (idusuario) REFERENCES bd_sistemamatriculas.usuario(idusuario),
+	CONSTRAINT user_role_FK_1 FOREIGN KEY (idrol) REFERENCES bd_sistemamatriculas.rol(idrol)
+);
+
+
+-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+create table docente(
+	iddocente int auto_increment not null,
+	nomdocente varchar(100) null,
+	email varchar(100) null,
+	activo bool null,
+	fechacrea date null,
+	CONSTRAINT docentes_pk PRIMARY KEY (iddocente)
+);
+
+CREATE TABLE curso (
+    idcurso INT AUTO_INCREMENT NOT NULL,
+    nomcurso VARCHAR(100) NOT NULL,
+    idgrado INT,
+    iddocente INT,
+    PRIMARY KEY (idcurso),
+    FOREIGN KEY (idgrado) REFERENCES grado(idgrado),
+    FOREIGN KEY (iddocente) REFERENCES docente(iddocente)
+);
+
+
+CREATE TABLE grado (
+    idgrado INT AUTO_INCREMENT NOT NULL,
+    nomgrado VARCHAR(50) NOT NULL,
+    PRIMARY KEY (idgrado)
+);
+
+CREATE TABLE matricula (
+    idmatricula INT AUTO_INCREMENT NOT NULL,
+    idestudiante INT,
+    idgrado INT,
+    fechamat DATE,
+    estado int,
+    observaciones varchar(1000),
+    PRIMARY KEY (idmatricula),
+    FOREIGN KEY (idestudiante) REFERENCES estudiante(idestudiante),
+    FOREIGN KEY (idgrado) REFERENCES grado(idgrado)
+);
+
+
+
+create table estudiante(
+	idestudiante int auto_increment not null,
+	nomestudiante varchar(100) null,
+	apeestudiante varchar(100) null,
+	email varchar(200) null,
+	telefono varchar(30) null,
+	fechanac date null,
+	direccion varchar(150) null,
+	activo bool null,
+	fechacrea date null,
+	CONSTRAINT estudiantes_pk PRIMARY KEY (idestudiante)
+);
+
+INSERT INTO bd_sistemamatriculas.docente (nomdocente,email,activo,fechacrea) VALUES
+	 ('Alvaro Gonzales','AlvGon@cibertec.edu.pe',1,'2023-11-20'),
+	 ('Aurelio Bautista','AureTista@example.com',1,'2023-11-19'),
+	 ('Marcos Lopez','MarLop@example.com',1,'2023-11-19'),
+	 ('Julian Espinoza','juEspi123@example.com',1,'2023-11-19'),
+	 ('Maria Gutierrez','MariGuti@example.com',1,'2023-11-19'),
+	 ('Fernando Aguilar','FernAgu@Example.com',1,'2023-11-19'),
+	 ('Edgar Alarcon','EdgAlar@example.com',0,'2023-11-19'),
+	 ('Giancarlo Carrion','GianCarr@Example.com',0,'2023-11-19'),
+	 ('Ivan Gomez','IvGomez@cibertec.edu.pe',1,'2023-11-20'),
+	 ('Elsa Veloz','ElsVelo@example.com',0,'2023-11-19'),
+	 ('Elias Cardoza','EliasCardo@example.com',0,'2023-11-19'),
+	 ('Mario Asias','EduAsias@example.com',0,'2023-11-19'),
+	 ('Flor Espinoza','FlorG@example.com',0,'2023-11-19'),
+	 ('Lucia Gomez','LuciGom@cibertec.edu.pe',0,'2023-11-20');
+
+INSERT INTO bd_sistemamatriculas.curso (nomcurso,nivel,iddocente) VALUES
+	 ('Matemáticas','6to Primaria',6),
+	 ('Historia Avanzada','2do Secundaria',2),
+	 ('Ciencias Básicas','1ro Secundaria',3),
+	 ('Algebra','2do Secundaria',4),
+	 ('Religión','4to Primaria',8),
+	 ('Aritmética','1ro Secundaria',5),
+	 ('Historia','5to Primaria',6),
+	 ('Comunicación I','4to Primaria',2),
+	 ('Trigonometría','3ro Secundaria',3);
+
+INSERT INTO bd_sistemamatriculas.estudiante (nomestudiante,apeestudiante,email,telefono,fechanac,direccion,activo,fechacrea) VALUES
+	 ('Eduardo','Pérez','AlbPer@cibertec.edu.pe','963-158-487','2001-02-18','Jr. Los Rosales 898 - Callao',1,'2023-11-19'),
+	 ('Juan','Gutierrez','JGutierr@cibertec.edu.pe','988-144-178','2000-06-25','Av. Libares 121, Callao',1,'2023-11-19'),
+	 ('Carlos','Bautista','CarBautista@cibertec.edu.pe','933-165-020','2001-07-10','Av. Morales 111, Callao',1,'2023-11-19'),
+	 ('Sergio','Quesada','SergQu@cibertec.edu.pe','998-244-002','2001-03-20','Urb. Rosas 877, Callao',0,'2023-11-19'),
+	 ('Carlos','Cardoza','CCardoza@cibertec.edu.pe','988-336-101','2002-10-17','Jr. Cabiares 998',1,'2023-11-20'),
+	 ('Juan','Alvarez','JuAlvaz@cibertec.edu.pe','910-974-151','1999-10-10','Av. Ruberon 113',1,'2023-11-19'),
+	 ('Elsa ','Gutierrez','ElsaGrrez@cibertec.edu.pe','987-955-099','1999-04-01','Jr. Vineras 111, Callao',1,'2023-11-19'),
+	 ('Mauricio','Dominguez','MauriDomi@cibertec.edu.pe','936-565-002','2001-08-19','Av. Larco 663',1,'2023-11-19'),
+	 ('Midori','Miroquesada','MiroQueMI@cibertec.edu.pe','986-254-111','2002-02-10','Av. Casuares 989',0,'2023-11-19'),
+	 ('Giancarlo','Beltrán','GianBelop@cibertec.edu.pe','987-584-484','2001-08-05','Jr. Corras 987',0,'2023-11-20'),
+	 ('Francis','Veloz','FVel@cibertec.edu.pe','987-489-498','2002-11-10','Av. Caseres 987',0,'2023-11-20'),
+	 ('Laura','Rodriguez','lauRodriguez@cibertec.edu.pe','987-158-145','1999-12-10','Av. Abancay 941',1,'2023-11-20'),
+	 ('Diego','Torres','diegTo@cibertec.edu.pe','951-052-320','2004-10-30','Av. Túpac Amaru',1,'2023-11-20'),
+	 ('Paula','Santos','PauSantos@cibertec.edu.pe','987-981-165','2001-05-10','Av. Suarez 123',1,'2023-11-20'),
+	 ('Eric','Bautista','ErcBautista@cibertec.edu.pe','951-988-128','2002-09-10','Jr. Tupac Amaru 10',1,'2023-11-20');
+
+insert into bd_sistemamatriculas.grado (nomgrado) values
+	('Primero de primaria'),
+	('Segundo de primaria'),
+	('Tercero de primaria'),
+	('Cuarto de primaria'),
+	('Quinto de primaria'),
+	('Sexto de primaria'),
+	('Primero de secundaria'),
+	('Segundo de secundaria'),
+	('Tercero de secundaria'),
+	('Cuarto de secundaria'),
+	('Quinto de secundaria');
