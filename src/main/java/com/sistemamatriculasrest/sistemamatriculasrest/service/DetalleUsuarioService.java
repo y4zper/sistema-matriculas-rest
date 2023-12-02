@@ -4,6 +4,7 @@ import com.sistemamatriculasrest.sistemamatriculasrest.model.bd.Rol;
 import com.sistemamatriculasrest.sistemamatriculasrest.model.bd.Usuario;
 import com.sistemamatriculasrest.sistemamatriculasrest.repository.UsuarioRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -22,6 +23,7 @@ import java.util.Set;
 @Service
 public class DetalleUsuarioService implements UserDetailsService {
 
+    @Autowired
     private UsuarioRepository usuarioRepository;
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
