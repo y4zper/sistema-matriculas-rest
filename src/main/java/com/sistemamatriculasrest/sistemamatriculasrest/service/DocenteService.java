@@ -2,6 +2,7 @@ package com.sistemamatriculasrest.sistemamatriculasrest.service;
 
 import com.sistemamatriculasrest.sistemamatriculasrest.model.bd.Docente;
 import com.sistemamatriculasrest.sistemamatriculasrest.repository.DocenteRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -11,6 +12,7 @@ import java.util.Optional;
 @Service
 public class DocenteService {
 
+    @Autowired
     private DocenteRepository docenteRepository;
 
     public List<Docente> listaDocentes() {

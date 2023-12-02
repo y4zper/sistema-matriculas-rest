@@ -4,6 +4,7 @@ import com.sistemamatriculasrest.sistemamatriculasrest.exception.ResourceNotFoun
 import com.sistemamatriculasrest.sistemamatriculasrest.model.bd.Curso;
 import com.sistemamatriculasrest.sistemamatriculasrest.service.CursoService;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +17,7 @@ import java.util.Optional;
 @RequestMapping("/api/v1/curso")
 public class CursoController {
 
+    @Autowired
     private CursoService cursoService;
 
     @GetMapping("")

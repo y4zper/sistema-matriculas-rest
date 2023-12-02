@@ -5,6 +5,7 @@ import com.sistemamatriculasrest.sistemamatriculasrest.model.bd.Estudiante;
 import com.sistemamatriculasrest.sistemamatriculasrest.model.request.EstudianteRequest;
 import com.sistemamatriculasrest.sistemamatriculasrest.service.EstudianteService;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +17,7 @@ import java.util.List;
 @RequestMapping("/api/v1/estudiante")
 public class EstudianteController {
 
+    @Autowired
     private EstudianteService estudianteService;
 
     @GetMapping("")

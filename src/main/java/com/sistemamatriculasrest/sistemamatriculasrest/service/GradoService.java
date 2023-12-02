@@ -3,6 +3,7 @@ package com.sistemamatriculasrest.sistemamatriculasrest.service;
 import com.sistemamatriculasrest.sistemamatriculasrest.exception.ResourceNotFoundException;
 import com.sistemamatriculasrest.sistemamatriculasrest.model.bd.Grado;
 import com.sistemamatriculasrest.sistemamatriculasrest.repository.GradoRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,6 +12,7 @@ import java.util.Optional;
 @Service
 public class GradoService {
 
+    @Autowired
     private GradoRepository gradoRepository;
 
     public List<Grado> listaGrados() {
