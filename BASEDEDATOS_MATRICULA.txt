@@ -96,6 +96,17 @@ INSERT INTO bd_sistemamatriculas.docente (nomdocente,email,activo,fechacrea) VAL
 	 ('Flor Espinoza','FlorG@example.com',0,'2023-11-19'),
 	 ('Lucia Gomez','LuciGom@cibertec.edu.pe',0,'2023-11-20');
 
+INSERT INTO bd_sistemamatriculas.curso (nomcurso,idgrado ,iddocente) VALUES
+	 ('Matemáticas',6,6),
+	 ('Historia Avanzada',8,2),
+	 ('Ciencias Básicas',7,3),
+	 ('Algebra',8,4),
+	 ('Religión',4,8),
+	 ('Aritmética',7,5),
+	 ('Historia',5,6),
+	 ('Comunicación I',4,2),
+	 ('Trigonometría',3,3);
+
 INSERT INTO bd_sistemamatriculas.estudiante (nomestudiante,apeestudiante,email,telefono,fechanac,direccion,activo,fechacrea) VALUES
 	 ('Eduardo','Pérez','AlbPer@cibertec.edu.pe','963-158-487','2001-02-18','Jr. Los Rosales 898 - Callao',1,'2023-11-19'),
 	 ('Juan','Gutierrez','JGutierr@cibertec.edu.pe','988-144-178','2000-06-25','Av. Libares 121, Callao',1,'2023-11-19'),
